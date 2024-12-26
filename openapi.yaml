@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2820
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 openapi: 3.0.1\
+info:\
+  title: FoodMemoir API\
+  description: Generates short, fictional 'Reddit user' stories about food nostalgia.\
+  version: "1.0.0"\
+servers:\
+  - url: https://YOUR_DOMAIN\
+paths:\
+  /foodmemoir:\
+    post:\
+      operationId: generateFoodMemoir\
+      summary: Generate a nostalgic 'fake Reddit story' and recipe\
+      description: >\
+        Takes input about a food/spice/herb and optional context. Returns\
+        a short fictional story (30\'9650 words) plus a recipe suggestion,\
+        with "stubborn" behavior if the user wants to change it.\
+      requestBody:\
+        required: true\
+        content:\
+          application/json:\
+            schema:\
+              type: object\
+              properties:\
+                user_id:\
+                  type: string\
+                food_item:\
+                  type: string\
+                memory_context:\
+                  type: string\
+                wants_recipe_change:\
+                  type: boolean\
+                change_reason:\
+                  type: string\
+      responses:\
+        "200":\
+          description: A short fictional story and a recommended (or updated) recipe.\
+          content:\
+            application/json:\
+              schema:\
+                type: object\
+                properties:\
+                  story:\
+                    type: string\
+                  recipe:\
+                    type: object\
+                    properties:\
+                      name:\
+                        type: string\
+                      instructions:\
+                        type: string\
+                  meta:\
+                    type: object\
+                    properties:\
+                      did_change_recipe:\
+                        type: boolean\
+}
